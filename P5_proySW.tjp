@@ -5,7 +5,7 @@
  * some elements of it
  */
 
-project pSix "Web Game"  2025-12-15 +5m {
+project pSix "Web Game"  2026-04-08 +5m {
   # Set the default time zone for the project. If not specified, UTC
   # is used.
   timezone "Europe/Paris"
@@ -19,7 +19,7 @@ project pSix "Web Game"  2025-12-15 +5m {
   # the project reports. If not specified, the current day will be
   # used, but this will likely be outside of the project range, so it
   # can't be seen in the reports.
-  now 2026-02-25-13:00
+  now 2026-04-08-12:30
   # The currency for all money values is the US Dollar.
   currency "EUR"
 
@@ -67,6 +67,11 @@ resource dev2 "Samantha Müller" {
 }
 resource dev3 "Peter Green" {
   email "kkk@unizar.es"
+}
+
+resource dev4 "Jairo Jimenez" {
+  email "901439@unizar.es"
+  limits { dailymax 4h }
 }
 
 # Now we specify the work packages. The whole project is described as
@@ -154,6 +159,7 @@ task WMGame "Web & Mobile Game" {
       actual:effort 20d
       depends WMGame.twebF
       depends WMGame.tback
+      start 2026-05-15
       }
 
     
@@ -182,6 +188,48 @@ task WMGame "Web & Mobile Game" {
       charge 12000.0 onstart
     }
   }
+}
+
+task MobileDesarrollo "desarrollo de la version movil" {
+  chargeset mFront
+  responsible dev4
+
+  task pantallasMobile "creacion pantallas version movil" {
+    chargeset mFront
+    responsible dev4
+    effort 5d
+    journalentry 2026-04-08 "Problema con ajuste de pantallas en dispositivo movil" {
+        author dev1
+        alert yellow
+        summary "El area de vision de la pantalla no se ajusta a la pantalla del movil, quedando elementos descuadrados"
+      }
+  }
+
+  task conexionBD "conexion acciones a base de datos" {
+    chargeset mFront
+    responsible dev3
+    depends MobileDesarrollo.pantallasMobile
+    effort 4d
+  }
+}
+
+task despliegueBackend "despliague backend" {
+  chargeset back
+  responsible dev1
+
+  task eleccionNube "eleccion de la nube a utilizar" {
+    chargeset back
+    responsible dev4
+    effort 1d
+  }
+
+  task despliegue "despliegue backend sobre nube" {
+    chargeset back
+    responsible dev4
+    effort 1d
+    depends despliegueBackend.despliegue
+  }
+
 }
 
 # Now the project has been specified completely. Stopping here would
@@ -351,4 +399,22 @@ resourcereport resourceGraph "" {
   # We only like to show leaf tasks for leaf resources.
   hidetask ~(isleaf() & isleaf_())
   sorttasks plan.start.up
+}
+
+taskreport planInicial "Planificacion inicial del proyecto" {
+  scenario plan
+  headline "Planificacion Inicial del proyecto"
+  columns bsi { title 'WBS' },
+          name,
+          start,
+          end,
+          effort,
+          duration,
+          chart { ${TaskTip} }
+
+  timeformat "%Y-%m-%d"
+  hideresource @all
+  loadunit days
+
+  caption "Este informe muestra la planificacion creada al inicio del proyecto"
 }
