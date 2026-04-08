@@ -198,7 +198,6 @@ task MobileDesarrollo "desarrollo de la version movil" {
   chargeset mFront
 
   task pantallasMobile "creacion pantallas version movil" {
-    chargeset mFront
     responsible dev4
     effort 5d
     journalentry 2026-04-08 "Problema con ajuste de pantallas en dispositivo movil" {
@@ -209,7 +208,6 @@ task MobileDesarrollo "desarrollo de la version movil" {
   }
 
   task conexionBD "conexion acciones a base de datos" {
-    chargeset mFront
     responsible dev3
     depends MobileDesarrollo.pantallasMobile
     effort 4d
@@ -221,13 +219,11 @@ task despliegueBackend "despliague backend" {
   responsible dev1
 
   task eleccionNube "eleccion de la nube a utilizar" {
-    chargeset back
     responsible dev4
     effort 1d
   }
 
   task despliegue "despliegue backend sobre nube" {
-    chargeset back
     responsible dev4 
     effort 1d
     depends despliegueBackend.despliegue
