@@ -198,8 +198,9 @@ task MobileDesarrollo "desarrollo de la version movil" {
   chargeset mFront
   responsible dev4
   task pantallasMobile "creacion pantallas version movil" {
-    responsible dev4
+    
     effort 5d
+    allocate dev4
     journalentry 2026-04-08 "Problema con ajuste de pantallas en dispositivo movil" {
         author dev1
         alert yellow
@@ -208,9 +209,9 @@ task MobileDesarrollo "desarrollo de la version movil" {
   }
 
   task conexionBD "conexion acciones a base de datos" {
-    responsible dev3
     depends MobileDesarrollo.pantallasMobile
     effort 4d
+    allocate dev3
   }
 }
 
@@ -219,8 +220,8 @@ task despliegueBackend "despliague backend" {
   responsible dev1
 
   task eleccionNube "eleccion de la nube a utilizar" {
-    responsible dev4
     effort 1d
+    allocate dev4
   }
 
   task despliegue "despliegue backend sobre nube" {
