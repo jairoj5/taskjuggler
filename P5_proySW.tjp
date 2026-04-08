@@ -161,7 +161,7 @@ task WMGame "Web & Mobile Game" {
       depends WMGame.tback
       start 2026-05-15
       }
-}
+
 
     
   task deliveries "Milestones" {
@@ -230,6 +230,7 @@ task despliegueBackend "despliague backend" {
     depends despliegueBackend.despliegue
   }
 
+}
 }
 
 # Now the project has been specified completely. Stopping here would
