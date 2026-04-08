@@ -401,7 +401,7 @@ resourcereport resourceGraph "" {
 }
 
 taskreport planInicial "Planificacion inicial del proyecto" {
-  scenario plan
+  scenarios plan
   headline "Planificacion Inicial del proyecto"
   columns bsi { title 'WBS' },
           name,
