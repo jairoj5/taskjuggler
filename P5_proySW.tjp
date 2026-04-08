@@ -225,8 +225,8 @@ task despliegueBackend "despliague backend" {
   }
 
   task despliegue "despliegue backend sobre nube" {
-    responsible dev4 
     effort 1d
+    allocate dev4 
     depends despliegueBackend.eleccionNube
   }
 
