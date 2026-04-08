@@ -189,7 +189,7 @@ task WMGame "Web & Mobile Game" {
       charge 12000.0 onstart
     }
   }
-}
+
 
 task MobileDesarrollo "desarrollo de la version movil" {
   chargeset mFront
