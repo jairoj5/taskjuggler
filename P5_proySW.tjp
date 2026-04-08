@@ -191,6 +191,9 @@ task WMGame "Web & Mobile Game" {
   }
 
 
+}
+
+
 task MobileDesarrollo "desarrollo de la version movil" {
   chargeset mFront
 
@@ -230,7 +233,6 @@ task despliegueBackend "despliague backend" {
     depends despliegueBackend.despliegue
   }
 
-}
 }
 
 # Now the project has been specified completely. Stopping here would
