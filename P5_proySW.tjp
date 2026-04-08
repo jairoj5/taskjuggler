@@ -193,7 +193,6 @@ task WMGame "Web & Mobile Game" {
 
 task MobileDesarrollo "desarrollo de la version movil" {
   chargeset mFront
-  responsible dev4
 
   task pantallasMobile "creacion pantallas version movil" {
     chargeset mFront
